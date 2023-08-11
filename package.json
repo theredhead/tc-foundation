@@ -1,0 +1,32 @@
+{
+  "name": "@theredhead/ts-foundation",
+  "version": "1.0.0",
+  "description": "Foundational types and functions",
+  "author": "kris@theredhead.nl",
+  "repository": {
+    "url": "https://github.com/theredhead/tc-foundation.git"
+  },
+  "bugs": {
+    "url": "https://github.com/theredhead/tc-foundation/issues"
+  },
+  "homepage": "https://github.com/theredhead/tc-foundation#readme",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsc -p . && npm run-script test",
+    "lint": "tslint -p tsconfig.json",
+    "test": "ts-node node_modules/jasmine/bin/jasmine --config=jasmine.json",
+    "publish-patch": "npm run-script test && npm run-script build && npm version patch && npm publish --access public",
+    "coverage": "nyc -r lcov -e .ts -x \"src/**/*spec.ts\" npm run-script test",
+    "coverage-cli": "nyc -r text -e .ts -x \"src/**/*spec.ts\" npm run-script test"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.6",
+    "ts-node": "^10.9.1",
+    "@types/jasmine": "^4.3.5",
+    "jasmine": "^5.1.0",
+    "nyc": "^15.1.0",
+    "rimraf": "^5.0.1"
+  }
+}
