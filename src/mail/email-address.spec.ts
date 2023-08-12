@@ -125,3 +125,36 @@ describe("EmailAddress", () => {
     expect(email.toString()).toEqual(raw);
   });
 });
+
+describe("EmailAddress.hasDisplayName", () => {
+  it("provides an easy way to determine if an email address has a displayname", () => {
+    for (let test of validEmailAddressesWithDisplayNamesForTest) {
+      expect(EmailAddress.hasDisplayName(test)).toBeTrue();
+    }
+    for (let test of validPlainEmailAddressesForTest) {
+      expect(EmailAddress.hasDisplayName(test)).toBeFalse();
+    }
+
+    expect(
+      EmailAddress.hasDisplayName("this is not an email address")
+    ).toBeFalse();
+  });
+});
+
+describe("EmailAddress.getDisplayName", () => {
+  it("provides an easy way to get the displayname portion from an email address", () => {
+    const tests: [string, string][] = [
+      ['"John" <john-doe@lostfound.com>', "John"],
+      ["john-doe@lostfound.com", "john-doe@lostfound.com"],
+    ];
+    for (let [value, expectation] of tests) {
+      expect(EmailAddress.getDisplayName(<EmailAddressString>value)).toEqual(
+        expectation
+      );
+    }
+
+    expect(
+      EmailAddress.hasDisplayName("this is not an email address")
+    ).toBeFalse();
+  });
+});
