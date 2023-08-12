@@ -1,3 +1,5 @@
+import { extractSuffix } from "./string.funcs";
+
 const ABSOLUTE_LENGTH_UNITS = ["cm", "mm", "in", "px", "pt", "pc"];
 const RELATIVE_LENGTH_UNITS = [
   "em",
@@ -10,7 +12,7 @@ const RELATIVE_LENGTH_UNITS = [
   "vmax",
   "%",
 ];
-// const ALL_LENGTH_UNITS = [...ABSOLUTE_LENGTH_UNITS, ...RELATIVE_LENGTH_UNITS];
+const ALL_LENGTH_UNITS = [...ABSOLUTE_LENGTH_UNITS, ...RELATIVE_LENGTH_UNITS];
 
 /**
  * Any of the absolute css length unit terms
@@ -47,7 +49,10 @@ export type StyleLengthUnit = StyleLengthUnitAbsolute | StyleLengthUnitRelative;
 export type StyleLength = `${number}${StyleLengthUnit}`;
 
 export const isStyleLength = (v: string): v is StyleLength => {
-  return false;
+  const unit = extractSuffix(v, "abcdefghijklmnopqrstuvwxyz");
+  const value = v.substring(0, v.length - unit.length);
+  const n = parseFloat(value);
+  return !isNaN(n) && ALL_LENGTH_UNITS.includes(unit);
 };
 
 /**
