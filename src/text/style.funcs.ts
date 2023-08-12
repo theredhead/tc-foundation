@@ -46,6 +46,10 @@ export type StyleLengthUnit = StyleLengthUnitAbsolute | StyleLengthUnitRelative;
  */
 export type StyleLength = `${number}${StyleLengthUnit}`;
 
+export const isStyleLength = (v: string): v is StyleLength => {
+  return false;
+};
+
 /**
  * Describes an absolute 'length' in css terms
  */

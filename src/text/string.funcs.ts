@@ -97,3 +97,36 @@ export const removeSuffix = (value: string, suffix: string): string => {
   }
   return value;
 };
+
+/**
+ * Reverses the given value
+ *
+ * @param value
+ * @returns
+ */
+export const reverse = (value: string): string => {
+  const chars = value.split("");
+  chars.reverse();
+  return chars.join("");
+};
+
+export const extractPrefix = (
+  value: string,
+  characters: string | string[]
+): string => {
+  const extracted: string[] = [];
+  for (let ix = 0; ix < value.length; ix++) {
+    const c = value[ix];
+    if (characters.includes(c)) {
+      extracted.push(c);
+    } else break;
+  }
+  return extracted.join("");
+};
+
+export const extractSuffix = (
+  value: string,
+  characters: string | string[]
+): string => {
+  return reverse(extractPrefix(reverse(value), characters));
+};

@@ -1,9 +1,12 @@
 import { EmailAddressStringPlain } from "../mail";
 import {
+  extractPrefix,
+  extractSuffix,
   initials,
   isWrappedIn,
   removePrefix,
   removeSuffix,
+  reverse,
   unwrap,
 } from "./string.funcs";
 
@@ -86,5 +89,28 @@ describe("removeSuffix", () => {
     expect(removeSuffix("There once was a lass", "Lass")).toEqual(
       "There once was a lass"
     );
+  });
+});
+
+describe("reverse", () => {
+  it("reverses strings", () => {
+    expect(reverse("foo bar baz")).toBe("zab rab oof");
+    expect(reverse("The quick brown fox jumps over the lazy dog")).toBe(
+      "god yzal eht revo spmuj xof nworb kciuq ehT"
+    );
+    expect(reverse(" ")).toBe(" ");
+    expect(reverse("")).toBe("");
+  });
+});
+
+describe("extractPrefix", () => {
+  it("extracts given characters from the front of a string", () => {
+    expect(extractPrefix("321Pizza", "0123457689")).toBe("321");
+  });
+});
+
+describe("extractPrefix", () => {
+  it("extracts given characters from the back of a string", () => {
+    expect(extractSuffix("321Pizza", "aiPz")).toBe("Pizza");
   });
 });
