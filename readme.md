@@ -1,4 +1,4 @@
-# @theredhead/tc-foundation
+# @theredhead/ts-foundation
 
 ## Who is this library for?
 
@@ -14,4 +14,4 @@ This library is just plain old typescript and I'm trying to be framework agnosti
 
 ## I have a problem with something in here, where do I get support?
 
-Feel free to [raise your issue on github](https://github.com/theredhead/tc-foundation/issues).
+Feel free to [raise your issue on github](https://github.com/theredhead/ts-foundation/issues).
